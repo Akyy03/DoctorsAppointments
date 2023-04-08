@@ -1,6 +1,7 @@
 # Doctors Appointments
 
-Entry-Level Java Tool perfect for a medical office
+The perfect entry-level Java Tool for a medical office!
+
 Features:
 - Adding new custom doctors, patients (and appointments);
 - Editing existing doctors, patients (and appointments);
@@ -16,7 +17,11 @@ Used: Encapsulation, Conditionals, Lists, Getters & Setters, and many more!
 !As a backend-only program, you have to open the code in a Java IDE to run (preferably IntelliJ IDEA)!
 
 1. Run the main method by left-clicking on the green play button in the upper right corner (or by pressing Shift + F10);
-2. The program should start, you have to use the specific key number which corresponds to the menu you want to enter in. To do that, you'd want to enter the number in the running window from the keyboard. 
+
+2. The program should start, you have to use the specific key number which corresponds to the menu you want to enter in.
+
+To do that, you'd want to enter the number in the running window from the keyboard. 
+
 (ex > You want to navigate from main menu to Doctors management, so you'll have to simply type " 1 " in the opened dialog box);
 
 # Notes
