@@ -1,31 +1,31 @@
 package Models;
 
 public class DoctorModels extends Model {
-    private String firstname;
-    private String lastname;
-    private String profession;
+    private String firstName;
+    private String lastName;
+    private String specialty;
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getProfession() {
-        return profession;
+    public String getSpecialty() {
+        return specialty;
     }
 
-    public void setProfession(String profession) {
-        this.profession = profession;
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
     }
 }
