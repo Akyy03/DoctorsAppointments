@@ -3,7 +3,7 @@ package UI;
 import java.util.Scanner;
 
 public class ManagementUI {
-    public void meniu() {
+    public void menu() {
 
         int choose2 = -1;
         while (choose2 != 0) {
@@ -33,8 +33,8 @@ public class ManagementUI {
             }
 
             if (choose1 < 0 || choose1 > 3) {
-                System.out.println("Introduceti o optiune valida (0 - 3)");
-                meniu();
+                System.out.println("Please use a valid option (0 - 3)");
+                menu();
             }
         }
     }

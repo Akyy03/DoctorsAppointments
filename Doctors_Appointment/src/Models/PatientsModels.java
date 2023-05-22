@@ -1,31 +1,31 @@
 package Models;
 
-public class PatientsModels extends Model{
-    private String nume;
-    private String prenume;
-    private String diagnostic;
+public class PatientsModels extends Model {
+    private String firstname;
+    private String lastname;
+    private String diagnosis;
 
-    public String getNume() {
-        return nume;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setNume(String nume) {
-        this.nume = nume;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getPrenume() {
-        return prenume;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setPrenume(String prenume) {
-        this.prenume = prenume;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public String getDiagnostic() {
-        return diagnostic;
+    public String getDiagnosis() {
+        return diagnosis;
     }
 
-    public void setDiagnostic(String diagnostic) {
-        this.diagnostic = diagnostic;
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
     }
 }

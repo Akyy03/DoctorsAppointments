@@ -32,11 +32,11 @@ public class DoctorsManagementUI {
             } else if (choose2 == 4) {
                 deleteDoctor();
             } else if (choose2 == 0) {
-                managementUI.meniu();
+                managementUI.menu();
             }
             if (choose2 < 0 || choose2 > 4) {
                 System.out.println("Introduceti o optiune valida (0 - 4)");
-                managementUI.meniu();
+                managementUI.menu();
             }
         }
     }

@@ -33,7 +33,7 @@ public class PatientsManagementUI {
             } else if (choose3 == 4) {
                 deletePatient();
             } else if (choose3 == 0) {
-                managementUI.meniu();
+                managementUI.menu();
             }
 
             if (choose3 < 0 || choose3 > 4) {

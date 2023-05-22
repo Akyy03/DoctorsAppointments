@@ -1,36 +1,36 @@
 package Models;
 
-public class AppointmentsModels extends Model{
-    private String nume;
-    private String prenume;
-    private int ora;
+public class AppointmentsModels extends Model {
+    private String firstName;
+    private String lastName;
+    private int hour;
     private int minute;
-    private int zi;
-    private int luna;
-    private int an;
+    private int day;
+    private int month;
+    private int year;
 
-    public String getNume() {
-        return nume;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setNume(String nume) {
-        this.nume = nume;
+    public void setFirstName(String firstname) {
+        this.firstName = firstname;
     }
 
-    public String getPrenume() {
-        return prenume;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setPrenume(String prenume) {
-        this.prenume = prenume;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public int getOra() {
-        return ora;
+    public int getHour() {
+        return hour;
     }
 
-    public void setOra(int ora) {
-        this.ora = ora;
+    public void setHour(int hour) {
+        this.hour = hour;
     }
 
     public int getMinute() {
@@ -41,27 +41,27 @@ public class AppointmentsModels extends Model{
         this.minute = minute;
     }
 
-    public int getZi() {
-        return zi;
+    public int getDay() {
+        return day;
     }
 
-    public void setZi(int zi) {
-        this.zi = zi;
+    public void setDay(int day) {
+        this.day = day;
     }
 
-    public int getLuna() {
-        return luna;
+    public int getMonth() {
+        return month;
     }
 
-    public void setLuna(int luna) {
-        this.luna = luna;
+    public void setMonth(int month) {
+        this.month = month;
     }
 
-    public int getAn() {
-        return an;
+    public int getYear() {
+        return year;
     }
 
-    public void setAn(int an) {
-        this.an = an;
+    public void setYear(int year) {
+        this.year = year;
     }
 }

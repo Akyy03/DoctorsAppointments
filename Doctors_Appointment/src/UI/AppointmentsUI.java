@@ -7,7 +7,7 @@ import java.util.*;
 
 public class AppointmentsUI {
     Scanner scanner = new Scanner(System.in);
-    List<AppointmentsModels> listaProgramari = new ArrayList<>();
+    List<AppointmentsModels> appointmentsList = new ArrayList<>();
     ManagementUI managementUI = new ManagementUI();
 
     public void appointments() {
@@ -20,7 +20,7 @@ public class AppointmentsUI {
             System.out.println("4. Delete appointment");
             System.out.println("0. Back");
 
-            System.out.println("\n Selectati optiunea dorita: ");
+            System.out.println("\n Select your option: ");
             int choose4 = scanner.nextInt();
             scanner.nextLine();
 
@@ -33,11 +33,11 @@ public class AppointmentsUI {
             } else if (choose4 == 4) {
                 deleteAppointment();
             } else if (choose4 == 0) {
-                managementUI.meniu();
+                managementUI.menu();
             }
 
             if (choose4 < 0 || choose4 > 5) {
-                System.out.println("Introduceti o optiune valida (0 - 5)");
+                System.out.println("Please use a valid option (0 - 5)");
                 appointments();
             }
         }
@@ -46,413 +46,414 @@ public class AppointmentsUI {
     public void addAppointment() {
         AppointmentsModels appointmentsModels = new AppointmentsModels();
 
-        System.out.println("Introduceti numele pacientului: ");
-        String nume = scanner.nextLine();
+        System.out.println("Insert patient's first name: ");
+        String firstName = scanner.nextLine();
 
-        System.out.println("Introduceti prenumele pacientului: ");
-        String prenume = scanner.nextLine();
+        System.out.println("Insert patient's last name: ");
+        String lastName = scanner.nextLine();
 
-        System.out.println("Introduceti ora programarii: (ora [ENTER] minut [ENTER])");
-        int ora = scanner.nextInt();
+        System.out.println("Insert the appointment time: (hour [ENTER] min [ENTER])");
+        int hour = scanner.nextInt();
         int minute = scanner.nextInt();
 
-        System.out.println("Introduceti data programarii: (zi [ENTER] luna [ENTER] an) ");
-        int zi = scanner.nextInt();
-        int luna = scanner.nextInt();
-        int an = scanner.nextInt();
+        System.out.println("Insert the appointment date: (dd [ENTER] mm [ENTER] yy) ");
+        int day = scanner.nextInt();
+        int month = scanner.nextInt();
+        int year = scanner.nextInt();
 
-        appointmentsModels.setNume(nume);
-        appointmentsModels.setPrenume(prenume);
-        appointmentsModels.setOra(ora);
+        appointmentsModels.setFirstName(firstName);
+        appointmentsModels.setLastName(lastName);
+        appointmentsModels.setHour(hour);
         appointmentsModels.setMinute(minute);
-        appointmentsModels.setZi(zi);
-        appointmentsModels.setLuna(luna);
-        appointmentsModels.setAn(an);
+        appointmentsModels.setDay(day);
+        appointmentsModels.setMonth(month);
+        appointmentsModels.setYear(year);
 
-        listaProgramari.add(appointmentsModels);
-        System.out.println("Programare adaugata cu succes!");
+        appointmentsList.add(appointmentsModels);
+        System.out.println("Appointment added successfully!");
     }
 
     public void showAppointments() {
-        for (AppointmentsModels appointmentsModels : listaProgramari) {
-            System.out.println(appointmentsModels.getNume() + " " + appointmentsModels.getPrenume() + " - " + appointmentsModels.getOra() + ":" + appointmentsModels.getMinute() + " " + appointmentsModels.getZi() + "/" + appointmentsModels.getLuna() + "/" + appointmentsModels.getAn());
+        for (AppointmentsModels appointmentsModels : appointmentsList) {
+            System.out.println(appointmentsModels.getFirstName() + " " + appointmentsModels.getLastName() + " - " + appointmentsModels.getHour() + ":" + appointmentsModels.getMinute() + " " + appointmentsModels.getDay() + "/" + appointmentsModels.getMonth() + "/" + appointmentsModels.getYear());
         }
-        if (listaProgramari.size() == 0) {
-            System.out.println("Nicio programare gasita.");
+        if (appointmentsList.size() == 0) {
+            System.out.println("No appointments found.");
         }
     }
 
     public void deleteAppointment() {
-        for (AppointmentsModels appointmentsModels : listaProgramari) {
-            System.out.println(appointmentsModels.getNume() + " " + appointmentsModels.getPrenume() + " - " + appointmentsModels.getOra() + ":" + appointmentsModels.getMinute() + " " + appointmentsModels.getZi() + "/" + appointmentsModels.getLuna() + "/" + appointmentsModels.getAn());
+        for (AppointmentsModels appointmentsModels : appointmentsList) {
+            System.out.println(appointmentsModels.getFirstName() + " " + appointmentsModels.getLastName() + " - " + appointmentsModels.getHour() + ":" + appointmentsModels.getMinute() + " " + appointmentsModels.getDay() + "/" + appointmentsModels.getMonth() + "/" + appointmentsModels.getYear());
         }
-        if (listaProgramari.size() > 0) {
-            System.out.println("Alegeti numarul programarii pe care doriti sa o stergeti: ");
-            int numarProgramare = -1;
-            numarProgramare = scanner.nextInt();
+        if (appointmentsList.size() > 0) {
+            System.out.println("Choose an appointment number to delete: ");
+            int appointmentNumber = -1;
+            appointmentNumber = scanner.nextInt();
             scanner.nextLine();
-            if (numarProgramare == 1) {
-                listaProgramari.remove(0);
-            } else if (numarProgramare == 2) {
-                listaProgramari.remove(1);
-            } else if (numarProgramare == 3) {
-                listaProgramari.remove(2);
-            } else if (numarProgramare == 4) {
-                listaProgramari.remove(3);
-            } else if (numarProgramare == 5) {
-                listaProgramari.remove(4);
+            if (appointmentNumber == 1) {
+                appointmentsList.remove(0);
+            } else if (appointmentNumber == 2) {
+                appointmentsList.remove(1);
+            } else if (appointmentNumber == 3) {
+                appointmentsList.remove(2);
+            } else if (appointmentNumber == 4) {
+                appointmentsList.remove(3);
+            } else if (appointmentNumber == 5) {
+                appointmentsList.remove(4);
             }
-            System.out.println("Programare stearsa cu succes!");
-            if (numarProgramare < 1 || numarProgramare > 5) {
-                System.out.println("Introduceti o optiune valida (1 - 5)");
+            System.out.println("Appointment removed successfully!");
+            if (appointmentNumber < 1 || appointmentNumber > 5) {
+                System.out.println("Please use a valid option (1 - 5)");
             }
         } else {
-            System.out.println("Nicio programare gasita.");
+            System.out.println("No appointments found.");
         }
     }
-    public void editAppointment(){
-        if (listaProgramari.size() == 0){
-            System.out.println("Nicio programare gasita.");
-        } else{
-            int optiune = -1;
-            while (optiune != 0) {
-                System.out.println("1. Editeaza numele");
-                System.out.println("2. Editeaza prenumele");
-                System.out.println("3. Editeaza ora");
-                System.out.println("4. Editeaza minut");
-                System.out.println("5. Editeaza zi");
-                System.out.println("6. Editeaza luna");
-                System.out.println("7. Editeaza an");
+
+    public void editAppointment() {
+        if (appointmentsList.size() == 0) {
+            System.out.println("No appointments found.");
+        } else {
+            int option = -1;
+            while (option != 0) {
+                System.out.println("1. Edit first name");
+                System.out.println("2. Edit last name");
+                System.out.println("3. Edit hour");
+                System.out.println("4. Edit minute");
+                System.out.println("5. Edit day");
+                System.out.println("6. Edit month");
+                System.out.println("7. Edit year");
                 System.out.println("0. Back");
-                optiune = scanner.nextInt();
+                option = scanner.nextInt();
                 scanner.nextLine();
-                if (optiune == 1){
-                    System.out.println("Introduceti numarul programarii in care doriti sa schimbati numele pacientului: ");
-                    for (AppointmentsModels appointmentsModels : listaProgramari) {
-                        System.out.println(appointmentsModels.getNume() + " " + appointmentsModels.getPrenume() + " - " + appointmentsModels.getOra() + ":" + appointmentsModels.getMinute() + " " + appointmentsModels.getZi() + "/" + appointmentsModels.getLuna() + "/" + appointmentsModels.getAn());
+                if (option == 1) {
+                    System.out.println("\n" + "Enter the appointment number in which you want to change the patient's first name: ");
+                    for (AppointmentsModels appointmentsModels : appointmentsList) {
+                        System.out.println(appointmentsModels.getFirstName() + " " + appointmentsModels.getLastName() + " - " + appointmentsModels.getHour() + ":" + appointmentsModels.getMinute() + " " + appointmentsModels.getDay() + "/" + appointmentsModels.getMonth() + "/" + appointmentsModels.getYear());
                     }
-                    int numarProgramare = scanner.nextInt();
+                    int appointmentNumber = scanner.nextInt();
                     scanner.nextLine();
-                    if (numarProgramare == 1){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(0);
-                        listaProgramari.get(0);
-                        System.out.println("Introduceti noul nume: ");
-                        String numeNou = scanner.nextLine();
-                        appointmentsModels.setNume(numeNou);
-                        System.out.println("Numele a fost schimbat cu succes!");
-                    } else if (numarProgramare == 2){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(1);
-                        listaProgramari.get(1);
-                        System.out.println("Introduceti noul nume: ");
-                        String numeNou = scanner.nextLine();
-                        appointmentsModels.setNume(numeNou);
-                        System.out.println("Numele a fost schimbat cu succes!");
-                    } else if (numarProgramare == 3){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(2);
-                        listaProgramari.get(2);
-                        System.out.println("Introduceti noul nume: ");
-                        String numeNou = scanner.nextLine();
-                        appointmentsModels.setNume(numeNou);
-                        System.out.println("Numele a fost schimbat cu succes!");
-                    } else if (numarProgramare == 4){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(3);
-                        listaProgramari.get(3);
-                        System.out.println("Introduceti noul nume: ");
-                        String numeNou = scanner.nextLine();
-                        appointmentsModels.setNume(numeNou);
-                        System.out.println("Numele a fost schimbat cu succes!");
-                    } else if (numarProgramare == 5){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(4);
-                        listaProgramari.get(4);
-                        System.out.println("Introduceti noul nume: ");
-                        String numeNou = scanner.nextLine();
-                        appointmentsModels.setNume(numeNou);
-                        System.out.println("Numele a fost schimbat cu succes!");
+                    if (appointmentNumber == 1) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(0);
+                        appointmentsList.get(0);
+                        System.out.println("Insert the new first name: ");
+                        String newFirstName = scanner.nextLine();
+                        appointmentsModels.setFirstName(newFirstName);
+                        System.out.println("First name updated successfully!");
+                    } else if (appointmentNumber == 2) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(1);
+                        appointmentsList.get(1);
+                        System.out.println("Insert the new first name: ");
+                        String newFirstName = scanner.nextLine();
+                        appointmentsModels.setFirstName(newFirstName);
+                        System.out.println("First name updated successfully!");
+                    } else if (appointmentNumber == 3) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(2);
+                        appointmentsList.get(2);
+                        System.out.println("Insert the new first name: ");
+                        String newFirstName = scanner.nextLine();
+                        appointmentsModels.setFirstName(newFirstName);
+                        System.out.println("First name updated successfully!");
+                    } else if (appointmentNumber == 4) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(3);
+                        appointmentsList.get(3);
+                        System.out.println("Insert the new first name: ");
+                        String newFirstName = scanner.nextLine();
+                        appointmentsModels.setFirstName(newFirstName);
+                        System.out.println("First name updated successfully!");
+                    } else if (appointmentNumber == 5) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(4);
+                        appointmentsList.get(4);
+                        System.out.println("Insert the new first name: ");
+                        String newFirstName = scanner.nextLine();
+                        appointmentsModels.setFirstName(newFirstName);
+                        System.out.println("First name updated successfully!");
                     }
-                } else if (optiune == 2){
-                    System.out.println("Introduceti numarul programarii in care doriti sa schimbati prenumele pacientului: ");
-                    for (AppointmentsModels appointmentsModels : listaProgramari) {
-                        System.out.println(appointmentsModels.getNume() + " " + appointmentsModels.getPrenume() + " - " + appointmentsModels.getOra() + ":" + appointmentsModels.getMinute() + " " + appointmentsModels.getZi() + "/" + appointmentsModels.getLuna() + "/" + appointmentsModels.getAn());
+                } else if (option == 2) {
+                    System.out.println("Enter the appointment number in which you want to change the patient's last name: ");
+                    for (AppointmentsModels appointmentsModels : appointmentsList) {
+                        System.out.println(appointmentsModels.getFirstName() + " " + appointmentsModels.getLastName() + " - " + appointmentsModels.getHour() + ":" + appointmentsModels.getMinute() + " " + appointmentsModels.getDay() + "/" + appointmentsModels.getMonth() + "/" + appointmentsModels.getYear());
                     }
-                    int numarProgramare = scanner.nextInt();
+                    int appointmentNumber = scanner.nextInt();
                     scanner.nextLine();
-                    if (numarProgramare == 1){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(0);
-                        listaProgramari.get(0);
-                        System.out.println("Introduceti noul prenume: ");
-                        String prenumeNou = scanner.nextLine();
-                        appointmentsModels.setPrenume(prenumeNou);
-                        System.out.println("Preumele a fost schimbat cu succes!");
-                    } else if (numarProgramare == 2){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(1);
-                        listaProgramari.get(1);
-                        System.out.println("Introduceti noul prenume: ");
-                        String prenumeNou = scanner.nextLine();
-                        appointmentsModels.setPrenume(prenumeNou);
-                        System.out.println("Preumele a fost schimbat cu succes!");
-                    } else if (numarProgramare == 3){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(2);
-                        listaProgramari.get(2);
-                        System.out.println("Introduceti noul prenume: ");
-                        String prenumeNou = scanner.nextLine();
-                        appointmentsModels.setPrenume(prenumeNou);
-                        System.out.println("Preumele a fost schimbat cu succes!");
-                    } else if (numarProgramare == 4){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(3);
-                        listaProgramari.get(3);
-                        System.out.println("Introduceti noul prenume: ");
-                        String prenumeNou = scanner.nextLine();
-                        appointmentsModels.setPrenume(prenumeNou);
-                        System.out.println("Preumele a fost schimbat cu succes!");
-                    } else if (numarProgramare == 5){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(4);
-                        listaProgramari.get(4);
-                        System.out.println("Introduceti noul prenume: ");
-                        String prenumeNou = scanner.nextLine();
-                        appointmentsModels.setPrenume(prenumeNou);
-                        System.out.println("Preumele a fost schimbat cu succes!");
+                    if (appointmentNumber == 1) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(0);
+                        appointmentsList.get(0);
+                        System.out.println("Insert the new last name: ");
+                        String newLastName = scanner.nextLine();
+                        appointmentsModels.setLastName(newLastName);
+                        System.out.println("Last name updated successfully!");
+                    } else if (appointmentNumber == 2) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(1);
+                        appointmentsList.get(1);
+                        System.out.println("Insert the new last name: ");
+                        String newLastName = scanner.nextLine();
+                        appointmentsModels.setLastName(newLastName);
+                        System.out.println("Last name updated successfully!");
+                    } else if (appointmentNumber == 3) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(2);
+                        appointmentsList.get(2);
+                        System.out.println("Insert the new last name: ");
+                        String newLastName = scanner.nextLine();
+                        appointmentsModels.setLastName(newLastName);
+                        System.out.println("Last name updated successfully!");
+                    } else if (appointmentNumber == 4) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(3);
+                        appointmentsList.get(3);
+                        System.out.println("Insert the new last name: ");
+                        String newLastName = scanner.nextLine();
+                        appointmentsModels.setLastName(newLastName);
+                        System.out.println("Last name updated successfully!");
+                    } else if (appointmentNumber == 5) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(4);
+                        appointmentsList.get(4);
+                        System.out.println("Insert the new last name: ");
+                        String newLastName = scanner.nextLine();
+                        appointmentsModels.setLastName(newLastName);
+                        System.out.println("Last name updated successfully!");
                     }
-                } else if (optiune == 3){
-                    System.out.println("Introduceti numarul programarii la care doriti sa schimbati ora: ");
-                    for (AppointmentsModels appointmentsModels : listaProgramari) {
-                        System.out.println(appointmentsModels.getNume() + " " + appointmentsModels.getPrenume() + " - " + appointmentsModels.getOra() + ":" + appointmentsModels.getMinute() + " " + appointmentsModels.getZi() + "/" + appointmentsModels.getLuna() + "/" + appointmentsModels.getAn());
+                } else if (option == 3) {
+                    System.out.println("Enter the appointment number in which you want to change the hour: ");
+                    for (AppointmentsModels appointmentsModels : appointmentsList) {
+                        System.out.println(appointmentsModels.getFirstName() + " " + appointmentsModels.getLastName() + " - " + appointmentsModels.getHour() + ":" + appointmentsModels.getMinute() + " " + appointmentsModels.getDay() + "/" + appointmentsModels.getMonth() + "/" + appointmentsModels.getYear());
                     }
-                    int numarProgramare = scanner.nextInt();
+                    int appointmentNumber = scanner.nextInt();
                     scanner.nextLine();
-                    if (numarProgramare == 1){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(0);
-                        listaProgramari.get(0);
-                        System.out.println("Introduceti noua ora: ");
-                        int oraNoua = scanner.nextInt();
+                    if (appointmentNumber == 1) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(0);
+                        appointmentsList.get(0);
+                        System.out.println("Insert the new hour: ");
+                        int newHour = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setOra(oraNoua);
-                        System.out.println("Ora a fost schimbata cu succes!");
-                    } else if (numarProgramare == 2){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(1);
-                        listaProgramari.get(1);
-                        System.out.println("Introduceti noua ora: ");
-                        int oraNoua = scanner.nextInt();
+                        appointmentsModels.setHour(newHour);
+                        System.out.println("Appointment hour updated successfully!");
+                    } else if (appointmentNumber == 2) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(1);
+                        appointmentsList.get(1);
+                        System.out.println("Insert the new hour: ");
+                        int newHour = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setOra(oraNoua);
-                        System.out.println("Ora a fost schimbata cu succes!");
-                    } else if (numarProgramare == 3){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(2);
-                        listaProgramari.get(2);
-                        System.out.println("Introduceti noua ora: ");
-                        int oraNoua = scanner.nextInt();
+                        appointmentsModels.setHour(newHour);
+                        System.out.println("Appointment hour updated successfully!");
+                    } else if (appointmentNumber == 3) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(2);
+                        appointmentsList.get(2);
+                        System.out.println("Insert the new hour: ");
+                        int newHour = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setOra(oraNoua);
-                        System.out.println("Ora a fost schimbata cu succes!");
-                    } else if (numarProgramare == 4){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(3);
-                        listaProgramari.get(3);
-                        System.out.println("Introduceti noua ora: ");
-                        int oraNoua = scanner.nextInt();
+                        appointmentsModels.setHour(newHour);
+                        System.out.println("Appointment hour updated successfully!");
+                    } else if (appointmentNumber == 4) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(3);
+                        appointmentsList.get(3);
+                        System.out.println("Insert the new hour: ");
+                        int newHour = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setOra(oraNoua);
-                        System.out.println("Ora a fost schimbata cu succes!");
-                    } else if (numarProgramare == 5){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(4);
-                        listaProgramari.get(4);
-                        System.out.println("Introduceti noua ora: ");
-                        int oraNoua = scanner.nextInt();
+                        appointmentsModels.setHour(newHour);
+                        System.out.println("Appointment hour updated successfully!");
+                    } else if (appointmentNumber == 5) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(4);
+                        appointmentsList.get(4);
+                        System.out.println("Insert the new hour: ");
+                        int newHour = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setOra(oraNoua);
-                        System.out.println("Ora a fost schimbata cu succes!");
+                        appointmentsModels.setHour(newHour);
+                        System.out.println("Appointment hour updated successfully!");
                     }
-                } else if (optiune == 4){
-                    System.out.println("Introduceti numarul programarii la care doriti sa schimbati minutele: ");
-                    for (AppointmentsModels appointmentsModels : listaProgramari) {
-                        System.out.println(appointmentsModels.getNume() + " " + appointmentsModels.getPrenume() + " - " + appointmentsModels.getOra() + ":" + appointmentsModels.getMinute() + " " + appointmentsModels.getZi() + "/" + appointmentsModels.getLuna() + "/" + appointmentsModels.getAn());
+                } else if (option == 4) {
+                    System.out.println("Enter the appointment number in which you want to change the minute: ");
+                    for (AppointmentsModels appointmentsModels : appointmentsList) {
+                        System.out.println(appointmentsModels.getFirstName() + " " + appointmentsModels.getLastName() + " - " + appointmentsModels.getHour() + ":" + appointmentsModels.getMinute() + " " + appointmentsModels.getDay() + "/" + appointmentsModels.getMonth() + "/" + appointmentsModels.getYear());
                     }
-                    int numarProgramare = scanner.nextInt();
+                    int appointmentNumber = scanner.nextInt();
                     scanner.nextLine();
-                    if (numarProgramare == 1){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(0);
-                        listaProgramari.get(0);
-                        System.out.println("Introduceti noul minut: ");
-                        int minutNou = scanner.nextInt();
+                    if (appointmentNumber == 1) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(0);
+                        appointmentsList.get(0);
+                        System.out.println("Insert the new minute: ");
+                        int newMinute = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setMinute(minutNou);
-                        System.out.println("Minutele au fost schimbate cu succes!");
-                    } else if (numarProgramare == 2){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(1);
-                        listaProgramari.get(1);
-                        System.out.println("Introduceti noul minut: ");
-                        int minutNou = scanner.nextInt();
+                        appointmentsModels.setMinute(newMinute);
+                        System.out.println("Appointment minute updated successfully!");
+                    } else if (appointmentNumber == 2) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(1);
+                        appointmentsList.get(1);
+                        System.out.println("Insert the new minute: ");
+                        int newMinute = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setMinute(minutNou);
-                        System.out.println("Minutele au fost schimbate cu succes!");
-                    } else if (numarProgramare == 3){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(2);
-                        listaProgramari.get(2);
-                        System.out.println("Introduceti noul minut: ");
-                        int minutNou = scanner.nextInt();
+                        appointmentsModels.setMinute(newMinute);
+                        System.out.println("Appointment minute updated successfully!");
+                    } else if (appointmentNumber == 3) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(2);
+                        appointmentsList.get(2);
+                        System.out.println("Insert the new minute: ");
+                        int newMinute = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setMinute(minutNou);
-                        System.out.println("Minutele au fost schimbate cu succes!");
-                    } else if (numarProgramare == 4){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(3);
-                        listaProgramari.get(3);
-                        System.out.println("Introduceti noul minut: ");
-                        int minutNou = scanner.nextInt();
+                        appointmentsModels.setMinute(newMinute);
+                        System.out.println("Appointment minute updated successfully!");
+                    } else if (appointmentNumber == 4) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(3);
+                        appointmentsList.get(3);
+                        System.out.println("Insert the new minute: ");
+                        int newMinute = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setMinute(minutNou);
-                        System.out.println("Minutele au fost schimbate cu succes!");
-                    } else if (numarProgramare == 5){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(4);
-                        listaProgramari.get(4);
-                        System.out.println("Introduceti noul minut: ");
-                        int minutNou = scanner.nextInt();
+                        appointmentsModels.setMinute(newMinute);
+                        System.out.println("Appointment minute updated successfully!");
+                    } else if (appointmentNumber == 5) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(4);
+                        appointmentsList.get(4);
+                        System.out.println("Insert the new minute: ");
+                        int newMinute = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setMinute(minutNou);
-                        System.out.println("Minutele au fost schimbate cu succes!");
+                        appointmentsModels.setMinute(newMinute);
+                        System.out.println("Appointment minute updated successfully!");
                     }
-                } else if (optiune == 5) {
-                    System.out.println("Introduceti numarul programarii la care doriti sa schimbati ziua: ");
-                    for (AppointmentsModels appointmentsModels : listaProgramari) {
-                        System.out.println(appointmentsModels.getNume() + " " + appointmentsModels.getPrenume() + " - " + appointmentsModels.getOra() + ":" + appointmentsModels.getMinute() + " " + appointmentsModels.getZi() + "/" + appointmentsModels.getLuna() + "/" + appointmentsModels.getAn());
+                } else if (option == 5) {
+                    System.out.println("Enter the appointment number in which you want to change the day: ");
+                    for (AppointmentsModels appointmentsModels : appointmentsList) {
+                        System.out.println(appointmentsModels.getFirstName() + " " + appointmentsModels.getLastName() + " - " + appointmentsModels.getHour() + ":" + appointmentsModels.getMinute() + " " + appointmentsModels.getDay() + "/" + appointmentsModels.getMonth() + "/" + appointmentsModels.getYear());
                     }
-                    int numarProgramare = scanner.nextInt();
+                    int appointmentNumber = scanner.nextInt();
                     scanner.nextLine();
-                    if (numarProgramare == 1){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(0);
-                        listaProgramari.get(0);
-                        System.out.println("Introduceti noua zi: ");
-                        int ziNoua = scanner.nextInt();
+                    if (appointmentNumber == 1) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(0);
+                        appointmentsList.get(0);
+                        System.out.println("Insert the new day: ");
+                        int newDay = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setZi(ziNoua);
-                        System.out.println("Ziua a fost schimbata cu succes!");
-                    } else if (numarProgramare == 2){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(1);
-                        listaProgramari.get(1);
-                        System.out.println("Introduceti noua zi: ");
-                        int ziNoua = scanner.nextInt();
+                        appointmentsModels.setDay(newDay);
+                        System.out.println("Appointment day updated successfully!");
+                    } else if (appointmentNumber == 2) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(1);
+                        appointmentsList.get(1);
+                        System.out.println("Insert the new day: ");
+                        int newDay = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setZi(ziNoua);
-                        System.out.println("Ziua a fost schimbata cu succes!");
-                    } else if (numarProgramare == 3){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(2);
-                        listaProgramari.get(2);
-                        System.out.println("Introduceti noua zi: ");
-                        int ziNoua = scanner.nextInt();
+                        appointmentsModels.setDay(newDay);
+                        System.out.println("Appointment day updated successfully!");
+                    } else if (appointmentNumber == 3) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(2);
+                        appointmentsList.get(2);
+                        System.out.println("Insert the new day: ");
+                        int newDay = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setZi(ziNoua);
-                        System.out.println("Ziua a fost schimbata cu succes!");
-                    } else if (numarProgramare == 4){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(3);
-                        listaProgramari.get(3);
-                        System.out.println("Introduceti noua zi: ");
-                        int ziNoua = scanner.nextInt();
+                        appointmentsModels.setDay(newDay);
+                        System.out.println("Appointment day updated successfully!");
+                    } else if (appointmentNumber == 4) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(3);
+                        appointmentsList.get(3);
+                        System.out.println("Insert the new day: ");
+                        int newDay = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setZi(ziNoua);
-                        System.out.println("Ziua a fost schimbata cu succes!");
-                    } else if (numarProgramare == 5){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(4);
-                        listaProgramari.get(4);
-                        System.out.println("Introduceti noua zi: ");
-                        int ziNoua = scanner.nextInt();
+                        appointmentsModels.setDay(newDay);
+                        System.out.println("Appointment day updated successfully!");
+                    } else if (appointmentNumber == 5) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(4);
+                        appointmentsList.get(4);
+                        System.out.println("Insert the new day: ");
+                        int newDay = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setZi(ziNoua);
-                        System.out.println("Ziua a fost schimbata cu succes!");
+                        appointmentsModels.setDay(newDay);
+                        System.out.println("Appointment day updated successfully!");
                     }
-                } else if (optiune == 6){
-                    System.out.println("Introduceti numarul programarii la care doriti sa schimbati luna: ");
-                    for (AppointmentsModels appointmentsModels : listaProgramari) {
-                        System.out.println(appointmentsModels.getNume() + " " + appointmentsModels.getPrenume() + " - " + appointmentsModels.getOra() + ":" + appointmentsModels.getMinute() + " " + appointmentsModels.getZi() + "/" + appointmentsModels.getLuna() + "/" + appointmentsModels.getAn());
+                } else if (option == 6) {
+                    System.out.println("Enter the appointment number in which you want to change the month: ");
+                    for (AppointmentsModels appointmentsModels : appointmentsList) {
+                        System.out.println(appointmentsModels.getFirstName() + " " + appointmentsModels.getLastName() + " - " + appointmentsModels.getHour() + ":" + appointmentsModels.getMinute() + " " + appointmentsModels.getDay() + "/" + appointmentsModels.getMonth() + "/" + appointmentsModels.getYear());
                     }
-                    int numarProgramare = scanner.nextInt();
+                    int appointmentNumber = scanner.nextInt();
                     scanner.nextLine();
-                    if (numarProgramare == 1){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(0);
-                        listaProgramari.get(0);
-                        System.out.println("Introduceti noua luna: ");
-                        int lunaNoua = scanner.nextInt();
+                    if (appointmentNumber == 1) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(0);
+                        appointmentsList.get(0);
+                        System.out.println("Insert the new month: ");
+                        int newMonth = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setLuna(lunaNoua);
-                        System.out.println("Luna a fost schimbata cu succes!");
-                    } else if (numarProgramare == 2){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(1);
-                        listaProgramari.get(1);
-                        System.out.println("Introduceti noua luna: ");
-                        int lunaNoua = scanner.nextInt();
+                        appointmentsModels.setMonth(newMonth);
+                        System.out.println("Appointment month updated successfully!");
+                    } else if (appointmentNumber == 2) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(1);
+                        appointmentsList.get(1);
+                        System.out.println("Insert the new month: ");
+                        int newMonth = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setLuna(lunaNoua);
-                        System.out.println("Luna a fost schimbata cu succes!");
-                    } else if (numarProgramare == 3){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(2);
-                        listaProgramari.get(2);
-                        System.out.println("Introduceti noua luna: ");
-                        int lunaNoua = scanner.nextInt();
+                        appointmentsModels.setMonth(newMonth);
+                        System.out.println("Appointment month updated successfully!");
+                    } else if (appointmentNumber == 3) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(2);
+                        appointmentsList.get(2);
+                        System.out.println("Insert the new month: ");
+                        int newMonth = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setLuna(lunaNoua);
-                        System.out.println("Luna a fost schimbata cu succes!");
-                    } else if (numarProgramare == 4){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(3);
-                        listaProgramari.get(3);
-                        System.out.println("Introduceti noua luna: ");
-                        int lunaNoua = scanner.nextInt();
+                        appointmentsModels.setMonth(newMonth);
+                        System.out.println("Appointment month updated successfully!");
+                    } else if (appointmentNumber == 4) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(3);
+                        appointmentsList.get(3);
+                        System.out.println("Insert the new month: ");
+                        int newMonth = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setLuna(lunaNoua);
-                        System.out.println("Luna a fost schimbata cu succes!");
-                    } else if (numarProgramare == 5){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(4);
-                        listaProgramari.get(4);
-                        System.out.println("Introduceti noua luna: ");
-                        int lunaNoua = scanner.nextInt();
+                        appointmentsModels.setMonth(newMonth);
+                        System.out.println("Appointment month updated successfully!");
+                    } else if (appointmentNumber == 5) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(4);
+                        appointmentsList.get(4);
+                        System.out.println("Insert the new month: ");
+                        int newMonth = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setLuna(lunaNoua);
-                        System.out.println("Luna a fost schimbata cu succes!");
+                        appointmentsModels.setMonth(newMonth);
+                        System.out.println("Appointment month updated successfully!");
                     }
-                } else if (optiune == 7){
-                    System.out.println("Introduceti numarul programarii la care doriti sa schimbati anul: ");
-                    for (AppointmentsModels appointmentsModels : listaProgramari) {
-                        System.out.println(appointmentsModels.getNume() + " " + appointmentsModels.getPrenume() + " - " + appointmentsModels.getOra() + ":" + appointmentsModels.getMinute() + " " + appointmentsModels.getZi() + "/" + appointmentsModels.getLuna() + "/" + appointmentsModels.getAn());
+                } else if (option == 7) {
+                    System.out.println("Enter the appointment number in which you want to change the year: ");
+                    for (AppointmentsModels appointmentsModels : appointmentsList) {
+                        System.out.println(appointmentsModels.getFirstName() + " " + appointmentsModels.getLastName() + " - " + appointmentsModels.getHour() + ":" + appointmentsModels.getMinute() + " " + appointmentsModels.getDay() + "/" + appointmentsModels.getMonth() + "/" + appointmentsModels.getYear());
                     }
-                    int numarProgramare = scanner.nextInt();
+                    int appointmentNumber = scanner.nextInt();
                     scanner.nextLine();
-                    if (numarProgramare == 1){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(0);
-                        listaProgramari.get(0);
-                        System.out.println("Introduceti noul an: ");
-                        int anNou = scanner.nextInt();
+                    if (appointmentNumber == 1) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(0);
+                        appointmentsList.get(0);
+                        System.out.println("Insert the new year: ");
+                        int newYear = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setAn(anNou);
-                        System.out.println("Anul a fost schimbat cu succes!");
-                    } else if (numarProgramare == 2){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(1);
-                        listaProgramari.get(1);
-                        System.out.println("Introduceti noul an: ");
-                        int anNou = scanner.nextInt();
+                        appointmentsModels.setYear(newYear);
+                        System.out.println("Appointment year updated successfully!");
+                    } else if (appointmentNumber == 2) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(1);
+                        appointmentsList.get(1);
+                        System.out.println("Insert the new year: ");
+                        int newYear = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setAn(anNou);
-                        System.out.println("Anul a fost schimbat cu succes!");
-                    } else if (numarProgramare == 3){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(2);
-                        listaProgramari.get(2);
-                        System.out.println("Introduceti noul an: ");
-                        int anNou = scanner.nextInt();
+                        appointmentsModels.setYear(newYear);
+                        System.out.println("Appointment year updated successfully!");
+                    } else if (appointmentNumber == 3) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(2);
+                        appointmentsList.get(2);
+                        System.out.println("Insert the new year: ");
+                        int newYear = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setAn(anNou);
-                        System.out.println("Anul a fost schimbat cu succes!");
-                    } else if (numarProgramare == 4){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(3);
-                        listaProgramari.get(3);
-                        System.out.println("Introduceti noul an: ");
-                        int anNou = scanner.nextInt();
+                        appointmentsModels.setYear(newYear);
+                        System.out.println("Appointment year updated successfully!");
+                    } else if (appointmentNumber == 4) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(3);
+                        appointmentsList.get(3);
+                        System.out.println("Insert the new year: ");
+                        int newYear = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setAn(anNou);
-                        System.out.println("Anul a fost schimbat cu succes!");
-                    } else if (numarProgramare == 5){
-                        AppointmentsModels appointmentsModels = listaProgramari.get(4);
-                        listaProgramari.get(4);
-                        System.out.println("Introduceti noul an: ");
-                        int anNou = scanner.nextInt();
+                        appointmentsModels.setYear(newYear);
+                        System.out.println("Appointment year updated successfully!");
+                    } else if (appointmentNumber == 5) {
+                        AppointmentsModels appointmentsModels = appointmentsList.get(4);
+                        appointmentsList.get(4);
+                        System.out.println("Insert the new year: ");
+                        int newYear = scanner.nextInt();
                         scanner.nextLine();
-                        appointmentsModels.setAn(anNou);
-                        System.out.println("Anul a fost schimbat cu succes!");
+                        appointmentsModels.setYear(newYear);
+                        System.out.println("Appointment year updated successfully!");
                     }
-                } else if (optiune == 0){
+                } else if (option == 0) {
                     appointments();
                 }
             }
