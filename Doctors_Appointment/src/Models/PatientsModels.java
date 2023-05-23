@@ -1,8 +1,8 @@
-package Models;
+package Models; 
 
 public class PatientsModels extends Model {
-    private String firstName;
-    private String lastName;
+    private String firstName; 
+    private String lastName; 
     private String diagnosis;
 
     public String getFirstName() {

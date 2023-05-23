@@ -18,14 +18,14 @@ public class ManagementUI {
             PatientsManagementUI patientsManagementUI = new PatientsManagementUI();
             AppointmentsUI appointmentsUI = new AppointmentsUI();
 
-            System.out.println("\n Selectati optiunea dorita: ");
+            System.out.println("\n Select your option: ");
             Scanner scanner = new Scanner(System.in);
             int choose1 = scanner.nextInt();
 
             if (choose1 == 1) {
-                doctorsManagementUI.meniuDoctors();
+                doctorsManagementUI.doctorsMenu();
             } else if (choose1 == 2) {
-                patientsManagementUI.meniuPatients();
+                patientsManagementUI.patientsMenu();
             } else if (choose1 == 3) {
                 appointmentsUI.appointments();
             } else if (choose1 == 0) {

@@ -13,8 +13,8 @@ public class AppointmentsModels extends Model {
         return firstName;
     }
 
-    public void setFirstName(String firstname) {
-        this.firstName = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {

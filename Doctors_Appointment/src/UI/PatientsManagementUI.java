@@ -1,16 +1,15 @@
 package UI;
 
-import Models.DoctorModels;
 import Models.PatientsModels;
 
 import java.util.*;
 
 public class PatientsManagementUI {
     Scanner scanner = new Scanner(System.in);
-    List<PatientsModels> listaPacienti = new ArrayList<>();
+    List<PatientsModels> patientsList = new ArrayList<>();
     ManagementUI managementUI = new ManagementUI();
 
-    public void meniuPatients() {
+    public void patientsMenu() {
 
         int choose2 = -1;
         while (choose2 != 0) {
@@ -20,7 +19,7 @@ public class PatientsManagementUI {
             System.out.println("4. Delete patient");
             System.out.println("0. Back");
 
-            System.out.println("\n Selectati optiunea dorita: ");
+            System.out.println("\n" + "Select your option ");
             int choose3 = scanner.nextInt();
             scanner.nextLine();
 
@@ -37,8 +36,8 @@ public class PatientsManagementUI {
             }
 
             if (choose3 < 0 || choose3 > 4) {
-                System.out.println("Introduceti o optiune valida (0 - 4)");
-                meniuPatients();
+                System.out.println("Please use a valid option (0 - 4)");
+                patientsMenu();
             }
         }
     }
@@ -46,204 +45,204 @@ public class PatientsManagementUI {
     public void addPatient() {
         PatientsModels patientsModels = new PatientsModels();
 
-        System.out.println("Introduceti numele pacientului: ");
-        String nume = scanner.nextLine();
+        System.out.println("Insert patient's first name: ");
+        String firstName = scanner.nextLine();
 
-        System.out.println("Introduceti prenumele pacientului: ");
-        String prenume = scanner.nextLine();
+        System.out.println("Insert patient's last name: ");
+        String lastName = scanner.nextLine();
 
-        System.out.println("Introduceti diagnosticul pacientului: ");
-        String diagnostic = scanner.nextLine();
+        System.out.println("Insert patient's diagnosis: ");
+        String diagnosis = scanner.nextLine();
 
-        patientsModels.setNume(nume);
-        patientsModels.setPrenume(prenume);
-        patientsModels.setDiagnostic(diagnostic);
+        patientsModels.setFirstName(firstName);
+        patientsModels.setLastName(lastName);
+        patientsModels.setDiagnosis(diagnosis);
 
-        listaPacienti.add(patientsModels);
-        System.out.println("Pacient adaugat cu succes!");
+        patientsList.add(patientsModels);
+        System.out.println("Patient successfully added!");
     }
 
     public void showPatients() {
-        for (PatientsModels patientsModels : listaPacienti) {
-            System.out.println(patientsModels.getNume() + " " + patientsModels.getPrenume() + " - " + patientsModels.getDiagnostic());
+        for (PatientsModels patientsModels : patientsList) {
+            System.out.println(patientsModels.getFirstName() + " " + patientsModels.getLastName() + " - " + patientsModels.getDiagnosis());
         }
-        if (listaPacienti.size() == 0) {
-            System.out.println("Niciun pacient gasit.");
+        if (patientsList.size() == 0) {
+            System.out.println("No patients found.");
         }
     }
 
     public void deletePatient() {
-        for (PatientsModels patientsModels : listaPacienti) {
-            System.out.println(patientsModels.getNume() + " " + patientsModels.getPrenume() + " - " + patientsModels.getDiagnostic());
+        for (PatientsModels patientsModels : patientsList) {
+            System.out.println(patientsModels.getFirstName() + " " + patientsModels.getLastName() + " - " + patientsModels.getDiagnosis());
         }
-        if (listaPacienti.size() > 0) {
-            System.out.println("Alegeti numarul pacientului pe care doriti sa il stergeti: ");
-            int numarPacient = -1;
-            numarPacient = scanner.nextInt();
+        if (patientsList.size() > 0) {
+            System.out.println("Choose a patient number to delete: ");
+            int patientNumber = -1;
+            patientNumber = scanner.nextInt();
             scanner.nextLine();
-            if (numarPacient == 1) {
-                listaPacienti.remove(0);
-            } else if (numarPacient == 2) {
-                listaPacienti.remove(1);
-            } else if (numarPacient == 3) {
-                listaPacienti.remove(2);
-            } else if (numarPacient == 4) {
-                listaPacienti.remove(3);
-            } else if (numarPacient == 5) {
-                listaPacienti.remove(4);
+            if (patientNumber == 1) {
+                patientsList.remove(0);
+            } else if (patientNumber == 2) {
+                patientsList.remove(1);
+            } else if (patientNumber == 3) {
+                patientsList.remove(2);
+            } else if (patientNumber == 4) {
+                patientsList.remove(3);
+            } else if (patientNumber == 5) {
+                patientsList.remove(4);
             }
-            System.out.println("Pacient sters cu succes!");
-            if (numarPacient < 1 || numarPacient > 5) {
-                System.out.println("Introduceti o optiune valida (1 - 5)");
+            System.out.println("Patient successfully removed!");
+            if (patientNumber < 1 || patientNumber > 5) {
+                System.out.println("Please use a valid option (1 - 5)");
             }
         } else {
-            System.out.println("Niciun pacient gasit.");
+            System.out.println("No patients found.");
         }
     }
 
     public void editPatient() {
-        if (listaPacienti.size() == 0) {
-            System.out.println("Niciun pacient gasit.");
+        if (patientsList.size() == 0) {
+            System.out.println("No patients found.");
         } else {
-            int optiune = -1;
-            while (optiune != 0) {
-                System.out.println("1. Editeaza numele");
-                System.out.println("2. Editeaza prenumele");
-                System.out.println("3. Editeaza diagnosticul");
+            int option = -1;
+            while (option != 0) {
+                System.out.println("1. Edit first name");
+                System.out.println("2. Edit last name");
+                System.out.println("3. Edit diagnosis");
                 System.out.println("0. Back");
-                optiune = scanner.nextInt();
+                option = scanner.nextInt();
                 scanner.nextLine();
-                if (optiune == 1) {
-                    System.out.println("Introduceti numarul pacientului caruia doriti sa ii schimbati numele: ");
-                    for (PatientsModels patientsModels : listaPacienti) {
-                        System.out.println(patientsModels.getNume() + " " + patientsModels.getPrenume() + " - " + patientsModels.getDiagnostic());
+                if (option == 1) {
+                    System.out.println("\n" + "Enter the patient number in which you want to change the first name: ");
+                    for (PatientsModels patientsModels : patientsList) {
+                        System.out.println(patientsModels.getFirstName() + " " + patientsModels.getLastName() + " - " + patientsModels.getDiagnosis());
                     }
-                    int numarPacient = scanner.nextInt();
+                    int patientNumber = scanner.nextInt();
                     scanner.nextLine();
-                    if (numarPacient == 1) {
-                        PatientsModels patientsModels = listaPacienti.get(0);
-                        listaPacienti.get(0);
-                        System.out.println("Introduceti noul nume: ");
-                        String numeNou = scanner.nextLine();
-                        patientsModels.setNume(numeNou);
-                        System.out.println("Numele a fost schimbat cu succes!");
-                    } else if (numarPacient == 2) {
-                        PatientsModels patientsModels = listaPacienti.get(1);
-                        listaPacienti.get(1);
-                        System.out.println("Introduceti noul nume: ");
-                        String numeNou = scanner.nextLine();
-                        patientsModels.setNume(numeNou);
-                        System.out.println("Numele a fost schimbat cu succes!");
-                    } else if (numarPacient == 3) {
-                        PatientsModels patientsModels = listaPacienti.get(2);
-                        listaPacienti.get(2);
-                        System.out.println("Introduceti noul nume: ");
-                        String numeNou = scanner.nextLine();
-                        patientsModels.setNume(numeNou);
-                        System.out.println("Numele a fost schimbat cu succes!");
-                    } else if (numarPacient == 4) {
-                        PatientsModels patientsModels = listaPacienti.get(3);
-                        listaPacienti.get(3);
-                        System.out.println("Introduceti noul nume: ");
-                        String numeNou = scanner.nextLine();
-                        patientsModels.setNume(numeNou);
-                        System.out.println("Numele a fost schimbat cu succes!");
-                    } else if (numarPacient == 5) {
-                        PatientsModels patientsModels = listaPacienti.get(4);
-                        listaPacienti.get(4);
-                        System.out.println("Introduceti noul nume: ");
-                        String numeNou = scanner.nextLine();
-                        patientsModels.setNume(numeNou);
-                        System.out.println("Numele a fost schimbat cu succes!");
+                    if (patientNumber == 1) {
+                        PatientsModels patientsModels = patientsList.get(0);
+                        patientsList.get(0);
+                        System.out.println("Insert the new first name: ");
+                        String newFirstName = scanner.nextLine();
+                        patientsModels.setFirstName(newFirstName);
+                        System.out.println("First name successfully changed!");
+                    } else if (patientNumber == 2) {
+                        PatientsModels patientsModels = patientsList.get(1);
+                        patientsList.get(1);
+                        System.out.println("Insert the new first name: ");
+                        String newFirstName = scanner.nextLine();
+                        patientsModels.setFirstName(newFirstName);
+                        System.out.println("First name successfully changed!");
+                    } else if (patientNumber == 3) {
+                        PatientsModels patientsModels = patientsList.get(2);
+                        patientsList.get(2);
+                        System.out.println("Insert the new first name: ");
+                        String newFirstName = scanner.nextLine();
+                        patientsModels.setFirstName(newFirstName);
+                        System.out.println("First name successfully changed!");
+                    } else if (patientNumber == 4) {
+                        PatientsModels patientsModels = patientsList.get(3);
+                        patientsList.get(3);
+                        System.out.println("Insert the new first name: ");
+                        String newFirstName = scanner.nextLine();
+                        patientsModels.setFirstName(newFirstName);
+                        System.out.println("First name successfully changed!");
+                    } else if (patientNumber == 5) {
+                        PatientsModels patientsModels = patientsList.get(4);
+                        patientsList.get(4);
+                        System.out.println("Insert the new first name: ");
+                        String newFirstName = scanner.nextLine();
+                        patientsModels.setFirstName(newFirstName);
+                        System.out.println("First name successfully changed!");
                     }
-                } else if (optiune == 2) {
-                    System.out.println("Introduceti numarul pacientului caruia doriti sa ii schimbati prenumele: ");
-                    for (PatientsModels patientsModels : listaPacienti) {
-                        System.out.println(patientsModels.getNume() + " " + patientsModels.getPrenume() + " - " + patientsModels.getDiagnostic());
+                } else if (option == 2) {
+                    System.out.println("\n" + "Enter the patient number in which you want to change the last name: ");
+                    for (PatientsModels patientsModels : patientsList) {
+                        System.out.println(patientsModels.getFirstName() + " " + patientsModels.getLastName() + " - " + patientsModels.getDiagnosis());
                     }
-                    int numarPacient = scanner.nextInt();
+                    int patientNumber = scanner.nextInt();
                     scanner.nextLine();
-                    if (numarPacient == 1) {
-                        PatientsModels patientsModels = listaPacienti.get(0);
-                        listaPacienti.get(0);
-                        System.out.println("Introduceti noul prenume: ");
-                        String prenumeNou = scanner.nextLine();
-                        patientsModels.setPrenume(prenumeNou);
-                        System.out.println("Prenumele a fost schimbat cu succes!");
-                    } else if (numarPacient == 2) {
-                        PatientsModels patientsModels = listaPacienti.get(1);
-                        listaPacienti.get(1);
-                        System.out.println("Introduceti noul prenume: ");
-                        String prenumeNou = scanner.nextLine();
-                        patientsModels.setPrenume(prenumeNou);
-                        System.out.println("Prenumele a fost schimbat cu succes!");
-                    } else if (numarPacient == 3) {
-                        PatientsModels patientsModels = listaPacienti.get(2);
-                        listaPacienti.get(2);
-                        System.out.println("Introduceti noul prenume: ");
-                        String prenumeNou = scanner.nextLine();
-                        patientsModels.setPrenume(prenumeNou);
-                        System.out.println("Prenumele a fost schimbat cu succes!");
-                    } else if (numarPacient == 4) {
-                        PatientsModels patientsModels = listaPacienti.get(3);
-                        listaPacienti.get(3);
-                        System.out.println("Introduceti noul prenume: ");
-                        String prenumeNou = scanner.nextLine();
-                        patientsModels.setPrenume(prenumeNou);
-                        System.out.println("Prenumele a fost schimbat cu succes!");
-                    } else if (numarPacient == 5) {
-                        PatientsModels patientsModels = listaPacienti.get(4);
-                        listaPacienti.get(4);
-                        System.out.println("Introduceti noul prenume: ");
-                        String prenumeNou = scanner.nextLine();
-                        patientsModels.setPrenume(prenumeNou);
-                        System.out.println("Prenumele a fost schimbat cu succes!");
+                    if (patientNumber == 1) {
+                        PatientsModels patientsModels = patientsList.get(0);
+                        patientsList.get(0);
+                        System.out.println("Insert the new last name: ");
+                        String newLastName = scanner.nextLine();
+                        patientsModels.setLastName(newLastName);
+                        System.out.println("Last name successfully changed!");
+                    } else if (patientNumber == 2) {
+                        PatientsModels patientsModels = patientsList.get(1);
+                        patientsList.get(1);
+                        System.out.println("Insert the new last name: ");
+                        String newLastName = scanner.nextLine();
+                        patientsModels.setLastName(newLastName);
+                        System.out.println("Last name successfully changed!");
+                    } else if (patientNumber == 3) {
+                        PatientsModels patientsModels = patientsList.get(2);
+                        patientsList.get(2);
+                        System.out.println("Insert the new last name: ");
+                        String newLastName = scanner.nextLine();
+                        patientsModels.setLastName(newLastName);
+                        System.out.println("Last name successfully changed!");
+                    } else if (patientNumber == 4) {
+                        PatientsModels patientsModels = patientsList.get(3);
+                        patientsList.get(3);
+                        System.out.println("Insert the new last name: ");
+                        String newLastName = scanner.nextLine();
+                        patientsModels.setLastName(newLastName);
+                        System.out.println("Last name successfully changed!");
+                    } else if (patientNumber == 5) {
+                        PatientsModels patientsModels = patientsList.get(4);
+                        patientsList.get(4);
+                        System.out.println("Insert the new last name: ");
+                        String newLastName = scanner.nextLine();
+                        patientsModels.setLastName(newLastName);
+                        System.out.println("Last name successfully changed!");
                     }
-                } else if (optiune == 3) {
-                    System.out.println("Introduceti numarul pacientului caruia doriti sa ii schimbati diagnosticul: ");
-                    for (PatientsModels patientsModels : listaPacienti) {
-                        System.out.println(patientsModels.getNume() + " " + patientsModels.getPrenume() + " - " + patientsModels.getDiagnostic());
+                } else if (option == 3) {
+                    System.out.println("\n" + "Enter the patient number in which you want to change the diagnosis: ");
+                    for (PatientsModels patientsModels : patientsList) {
+                        System.out.println(patientsModels.getFirstName() + " " + patientsModels.getLastName() + " - " + patientsModels.getDiagnosis());
                     }
-                    int numarPacient = scanner.nextInt();
+                    int patientNumber = scanner.nextInt();
                     scanner.nextLine();
-                    if (numarPacient == 1) {
-                        PatientsModels patientsModels = listaPacienti.get(0);
-                        listaPacienti.get(0);
-                        System.out.println("Introduceti noul diagnostic: ");
-                        String diagnosticNou = scanner.nextLine();
-                        patientsModels.setDiagnostic(diagnosticNou);
-                        System.out.println("Diagnosticul a fost schimbat cu succes!");
-                    } else if (numarPacient == 2) {
-                        PatientsModels patientsModels = listaPacienti.get(1);
-                        listaPacienti.get(1);
-                        System.out.println("Introduceti noul diagnostic: ");
-                        String diagnosticNou = scanner.nextLine();
-                        patientsModels.setDiagnostic(diagnosticNou);
-                        System.out.println("Diagnosticul a fost schimbat cu succes!");
-                    } else if (numarPacient == 3) {
-                        PatientsModels patientsModels = listaPacienti.get(2);
-                        listaPacienti.get(2);
-                        System.out.println("Introduceti noul diagnostic: ");
-                        String diagnosticNou = scanner.nextLine();
-                        patientsModels.setDiagnostic(diagnosticNou);
-                        System.out.println("Diagnosticul a fost schimbat cu succes!");
-                    } else if (numarPacient == 4) {
-                        PatientsModels patientsModels = listaPacienti.get(3);
-                        listaPacienti.get(3);
-                        System.out.println("Introduceti noul diagnostic: ");
-                        String diagnosticNou = scanner.nextLine();
-                        patientsModels.setDiagnostic(diagnosticNou);
-                        System.out.println("Diagnosticul a fost schimbat cu succes!");
-                    } else if (numarPacient == 5) {
-                        PatientsModels patientsModels = listaPacienti.get(4);
-                        listaPacienti.get(4);
-                        System.out.println("Introduceti noul diagnostic: ");
-                        String diagnosticNou = scanner.nextLine();
-                        patientsModels.setDiagnostic(diagnosticNou);
-                        System.out.println("Diagnosticul a fost schimbat cu succes!");
+                    if (patientNumber == 1) {
+                        PatientsModels patientsModels = patientsList.get(0);
+                        patientsList.get(0);
+                        System.out.println("Insert the new diagnosis: ");
+                        String newDiagnosis = scanner.nextLine();
+                        patientsModels.setDiagnosis(newDiagnosis);
+                        System.out.println("Diagnosis successfully changed!");
+                    } else if (patientNumber == 2) {
+                        PatientsModels patientsModels = patientsList.get(1);
+                        patientsList.get(1);
+                        System.out.println("Insert the new diagnosis: ");
+                        String newDiagnosis = scanner.nextLine();
+                        patientsModels.setDiagnosis(newDiagnosis);
+                        System.out.println("Diagnosis successfully changed!");
+                    } else if (patientNumber == 3) {
+                        PatientsModels patientsModels = patientsList.get(2);
+                        patientsList.get(2);
+                        System.out.println("Insert the new diagnosis: ");
+                        String newDiagnosis = scanner.nextLine();
+                        patientsModels.setDiagnosis(newDiagnosis);
+                        System.out.println("Diagnosis successfully changed!");
+                    } else if (patientNumber == 4) {
+                        PatientsModels patientsModels = patientsList.get(3);
+                        patientsList.get(3);
+                        System.out.println("Insert the new diagnosis: ");
+                        String newDiagnosis = scanner.nextLine();
+                        patientsModels.setDiagnosis(newDiagnosis);
+                        System.out.println("Diagnosis successfully changed!");
+                    } else if (patientNumber == 5) {
+                        PatientsModels patientsModels = patientsList.get(4);
+                        patientsList.get(4);
+                        System.out.println("Insert the new diagnosis: ");
+                        String newDiagnosis = scanner.nextLine();
+                        patientsModels.setDiagnosis(newDiagnosis);
+                        System.out.println("Diagnosis successfully changed!");
                     }
-                } else if (optiune == 0) {
-                    meniuPatients();
+                } else if (option == 0) {
+                    patientsMenu();
                 }
             }
         }
