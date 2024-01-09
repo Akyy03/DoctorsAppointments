@@ -27,7 +27,7 @@ To do that, you'd want to enter the number in the running window from the keyboa
 # Notes
 
 The program is not currently using a file or a database to store the custom added objects, so the doctors, patients,
-and appointments should disappear when going back to main menu.
+and appointments will disappear when going back to main menu!
 
 This is the very first version of a beginner CRUD program, so it'll receive further updates!
 
